@@ -320,15 +320,6 @@ const IndicatorChart = ({ priceData, indicatorData, indicator }: { priceData: an
 
 import React from "react";
 
-// 为静态导出提供参数
-export async function generateStaticParams() {
-  return [
-    { id: "1" },
-    { id: "2" },
-    { id: "3" }
-  ];
-}
-
 export default function IndicatorEditPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter()
   const { toast } = useToast()
