@@ -31,15 +31,16 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build Project
-        run: pnpm run build
+      - name: Build and Export Project
+        run: |
+          pnpm run build
+          pnpm run export
 
       - name: Prepare Static Files for GitHub Pages
         run: |
           mkdir -p ./gh-pages
-          mkdir -p ./gh-pages/us-stock-frontend/_next/static
-          cp -r ./.next/static/* ./gh-pages/us-stock-frontend/_next/static/
-          cp -r ./.next/server/pages/*.html ./gh-pages/us-stock-frontend/
+          mkdir -p ./gh-pages/us-stock-frontend
+          cp -r ./out/* ./gh-pages/us-stock-frontend/
           echo "Creating index.html if necessary"
           if [ -f ./gh-pages/us-stock-frontend/404.html ]; then mv ./gh-pages/us-stock-frontend/404.html ./gh-pages/us-stock-frontend/index.html; fi
           # Create a redirect index.html at root to point to the correct base path without forcing specific page
