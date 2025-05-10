@@ -37,12 +37,15 @@ jobs:
       - name: Prepare Static Files for GitHub Pages
         run: |
           mkdir -p ./gh-pages
-          cp -r ./.next/static/* ./gh-pages/
-          cp -r ./.next/server/pages/*.html ./gh-pages/
-          mkdir -p ./gh-pages/_next/static
-          cp -r ./.next/static/* ./gh-pages/_next/static/
+          mkdir -p ./gh-pages/us-stock-frontend
+          cp -r ./.next/static/* ./gh-pages/us-stock-frontend/
+          cp -r ./.next/server/pages/*.html ./gh-pages/us-stock-frontend/
+          mkdir -p ./gh-pages/us-stock-frontend/_next/static
+          cp -r ./.next/static/* ./gh-pages/us-stock-frontend/_next/static/
           echo "Creating index.html if necessary"
-          if [ -f ./gh-pages/404.html ]; then mv ./gh-pages/404.html ./gh-pages/index.html; fi
+          if [ -f ./gh-pages/us-stock-frontend/404.html ]; then mv ./gh-pages/us-stock-frontend/404.html ./gh-pages/us-stock-frontend/index.html; fi
+          # Create a redirect index.html at root to point to the correct base path
+          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=/us-stock-frontend"></head><body></body></html>' > ./gh-pages/index.html
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
