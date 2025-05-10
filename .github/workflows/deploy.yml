@@ -43,7 +43,7 @@ jobs:
           echo "Creating index.html if necessary"
           if [ -f ./gh-pages/us-stock-frontend/404.html ]; then mv ./gh-pages/us-stock-frontend/404.html ./gh-pages/us-stock-frontend/index.html; fi
           # Create a redirect index.html at root to point to the correct base path with a script to prevent looping
-          echo '<!DOCTYPE html><html><head><title>Redirecting...</title><script>if (window.location.pathname !== "/us-stock-frontend/index.html") { window.location.href = "/us-stock-frontend/index.html"; }</script></head><body><p>Redirecting to the application...</p></body></html>' > ./gh-pages/index.html
+          echo '<!DOCTYPE html><html><head><title>Redirecting...</title><script>if (window.location.pathname !== "/us-stock-frontend/") { window.location.href = "/us-stock-frontend/"; }</script></head><body><p>Redirecting to the application...</p></body></html>' > ./gh-pages/index.html
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
