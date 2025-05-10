@@ -13,7 +13,6 @@ const nextConfig = {
   },
   basePath: isProd ? '/us-stock-frontend' : '',
   assetPrefix: isProd ? '/us-stock-frontend/' : '',
-  output: 'export',
 }
 
 export default nextConfig
