@@ -34,10 +34,18 @@ jobs:
       - name: Build Project
         run: pnpm run build
 
+      - name: Prepare Static Files for GitHub Pages
+        run: |
+          mkdir -p ./gh-pages
+          cp -r ./.next/static ./gh-pages/
+          cp ./.next/server/pages/*.html ./gh-pages/
+          echo "Creating index.html if necessary"
+          if [ -f ./gh-pages/404.html ]; then mv ./gh-pages/404.html ./gh-pages/index.html; fi
+
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./.next/static
+          publish_dir: ./gh-pages
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
