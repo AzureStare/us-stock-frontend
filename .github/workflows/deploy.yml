@@ -37,8 +37,10 @@ jobs:
       - name: Prepare Static Files for GitHub Pages
         run: |
           mkdir -p ./gh-pages
-          cp -r ./.next/static ./gh-pages/
-          cp ./.next/server/pages/*.html ./gh-pages/
+          cp -r ./.next/static/* ./gh-pages/
+          cp -r ./.next/server/pages/*.html ./gh-pages/
+          mkdir -p ./gh-pages/_next/static
+          cp -r ./.next/static/* ./gh-pages/_next/static/
           echo "Creating index.html if necessary"
           if [ -f ./gh-pages/404.html ]; then mv ./gh-pages/404.html ./gh-pages/index.html; fi
 
